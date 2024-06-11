@@ -13,15 +13,7 @@ class NewsList(generic.ListView):
     model = News
     template_name = 'news/home.html'
 
-    def get_queryset(self):
-        """
-        Выводим только несколько последних новостей.
-
-        Их количество определяется в настройках проекта.
-        """
-        return self.model.objects.prefetch_related(
-            'comment_set'
-        )[:settings.NEWS_COUNT_ON_HOME_PAGE]
+    context_object_name = 'news_feed'
 
 
 class NewsDetail(generic.DetailView):
